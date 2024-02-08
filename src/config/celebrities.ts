@@ -1,5 +1,7 @@
 import Celebrity from '../types/celebrities';
 
+// add Stan Lee
+
 const Celebrities: Celebrity[] = [
   {
     id: 0,
