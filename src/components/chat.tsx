@@ -16,6 +16,7 @@ import {zodResolver} from '@hookform/resolvers/zod';
 import {SafeAreaView} from 'react-native';
 import {FlatList} from 'react-native';
 import {MessageType} from '../types/message';
+import {useNavigation} from '@react-navigation/native';
 
 type ChatHeaerPorps = {
   name: string;
@@ -24,9 +25,15 @@ type ChatHeaerPorps = {
 };
 
 export const ChatHeader: FC<ChatHeaerPorps> = ({name, avatar, isTyping}) => {
+  const navigation = useNavigation();
+
+  const handleBackPress = () => {
+	navigation.goBack();
+  }
+
   return (
     <View className="flex w-full flex-row justify-between bg-neutral-500 p-3">
-      <TouchableOpacity className="flex flex-row items-center rounded-full bg-neutral-400 p-2">
+      <TouchableOpacity onPress={handleBackPress} className="flex flex-row items-center rounded-full bg-neutral-400 p-2">
         <BackIcon width={20} height={20} />
       </TouchableOpacity>
       <View className="flex flex-row items-center space-x-2">
