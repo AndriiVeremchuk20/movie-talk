@@ -3,9 +3,11 @@ import {ChatCompletion} from './types';
 
 export const query = async ({
   personName,
+  movieName,
   message,
 }: {
   personName: string;
+  movieName: string;
   message: string;
 }) => {
   const body = {
@@ -13,7 +15,7 @@ export const query = async ({
     messages: [
       {
         role: 'system',
-        content: `Talk like youre ${personName}. But but answer briefly.`,
+        content: `Talk like youre ${personName} from ${movieName}. But but answer briefly.`,
       },
       {
         role: 'user',
