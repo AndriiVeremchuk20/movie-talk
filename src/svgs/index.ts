@@ -1,1 +1,2 @@
-export {default as BackIcon} from './back-svgrepo-com.svg';
+export {default as BackIcon} from './back.svg';
+export {default as SendIcon} from './send.svg';
