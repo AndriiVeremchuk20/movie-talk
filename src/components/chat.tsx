@@ -15,19 +15,22 @@ import {z} from 'zod';
 import {zodResolver} from '@hookform/resolvers/zod';
 import {SafeAreaView} from 'react-native';
 import {FlatList} from 'react-native';
+import {MessageType} from '../types/message';
 
 type ChatHeaerPorps = {
   name: string;
   avatar: string;
+  isTyping: boolean;
 };
 
-export const ChatHeader: FC<ChatHeaerPorps> = ({name, avatar}) => {
+export const ChatHeader: FC<ChatHeaerPorps> = ({name, avatar, isTyping}) => {
   return (
     <View className="flex w-full flex-row justify-between bg-neutral-500 p-3">
       <TouchableOpacity className="flex flex-row items-center rounded-full bg-neutral-400 p-2">
         <BackIcon width={20} height={20} />
       </TouchableOpacity>
       <View className="flex flex-row items-center space-x-2">
+        {isTyping ? <Text>typing</Text> : null}
         <Text className="text-xl text-white">{name}</Text>
         <View className="rounded-full border-2 border-green-500 p-[1px]">
           <Image
@@ -40,95 +43,16 @@ export const ChatHeader: FC<ChatHeaerPorps> = ({name, avatar}) => {
   );
 };
 
-type MessageType = {
-  id: number;
-  text: string;
-  date: string;
-  isMyMsg: boolean;
+type ChatBodyProps = {
+  messages: MessageType[];
 };
 
-export const ChatBody = () => {
-  const Messages: MessageType[] = [
-    {
-      id: 1,
-      text: 'Lorem ipsum doctor',
-      date: '10-11-2023',
-      isMyMsg: true,
-    },
-    {
-      id: 2,
-      text: 'Some text;lsdfkgjkdjfglkjdhsflgk jdhslfjhglkdjsfhlgjhlfkjdh gkjhdf',
-      date: '10-11-2023',
-      isMyMsg: false,
-    },
-    {
-      id: 3,
-      text: 'Lorem ipsum doctord slfkglsdfhjgkdjh  kgljhdlkgfjhdkljhfglkjdhslkg jkd gkdh sghj',
-      date: '10-11-2023',
-      isMyMsg: true,
-    },
-    {
-      id: 4,
-      text: 'Lorem ipsum doctor kdfjshglkjdh kgjhkjlkdjshfglkjhdklsfghlkd jhglk dhjs flkgjhdkl fjglkdjh gfkjh dsgfkjhkdsf',
-      date: '10-11-2023',
-      isMyMsg: false,
-    },
-    {
-      id: 5,
-      text: 'Lorem ipsum doctor',
-      date: '10-11-2023',
-      isMyMsg: true,
-    },
-    {
-      id: 6,
-      text: 'Some text;lsdfkgjkdjfglkjdhsflgk jdhslfjhglkdjsfhlgjhlfkjdh gkjhdf',
-      date: '10-11-2023',
-      isMyMsg: false,
-    },
-    {
-      id: 7,
-      text: 'Lorem ipsum doctord slfkglsdfhjgkdjh  kgljhdlkgfjhdkljhfglkjdhslkg jkd gkdh sghj',
-      date: '10-11-2023',
-      isMyMsg: true,
-    },
-    {
-      id: 8,
-      text: 'Lorem ipsum doctor kdfjshglkjdh kgjhkjlkdjshfglkjhdklsfghlkd jhglk dhjs flkgjhdkl fjglkdjh gfkjh dsgfkjhkdsf',
-      date: '10-11-2023',
-      isMyMsg: false,
-    },
-    {
-      id: 9,
-      text: 'Lorem ipsum doctor',
-      date: '10-11-2023',
-      isMyMsg: true,
-    },
-    {
-      id: 10,
-      text: 'Some text;lsdfkgjkdjfglkjdhsflgk jdhslfjhglkdjsfhlgjhlfkjdh gkjhdf',
-      date: '10-11-2023',
-      isMyMsg: false,
-    },
-    {
-      id: 11,
-      text: 'Lorem ipsum doctord slfkglsdfhjgkdjh  kgljhdlkgfjhdkljhfglkjdhslkg jkd gkdh sghj',
-      date: '10-11-2023',
-      isMyMsg: true,
-    },
-    {
-      id: 12,
-      text: 'Lorem ipsum doctor kdfjshglkjdh kgjhkjlkdjshfglkjhdklsfghlkd jhglk dhjs flkgjhdkl fjglkdjh gfkjh dsgfkjhkdsf',
-      date: '10-11-2023',
-      isMyMsg: false,
-    },
-  ];
-
+export const ChatBody: FC<ChatBodyProps> = ({messages}) => {
   return (
-    <SafeAreaView className="h-[610px]">
+    <SafeAreaView className="h-[610px] pb-5">
       <FlatList
-        data={Messages}
+        data={messages}
         renderItem={({item}) => <ChatMessage message={item} />}
-        keyExtractor={({id}) => id.toString()}
         className="m-1"
       />
     </SafeAreaView>
@@ -139,17 +63,15 @@ type MessageProps = {
   message: MessageType;
 };
 
-export const ChatMessage: FC<MessageProps> = ({
-  message: {id, text, date, isMyMsg},
-}) => {
+export const ChatMessage: FC<MessageProps> = ({message: {role, content}}) => {
+  const isMyMessage = role === 'user';
   return (
     <View className="my-1 w-fit">
       <View
-        className={`flex flex-col ${isMyMsg ? 'items-end' : 'items-start'}`}>
+        className={`flex flex-col ${isMyMessage ? 'items-end' : 'items-start'}`}>
         <View
-          className={`rounded-md p-2 ${isMyMsg ? 'bg-neutral-400' : 'bg-neutral-300'}`}>
-          <Text className="text-xl">{text}</Text>
-          <Text className="text-sm">{date}</Text>
+          className={`max-w-[300px] rounded-md p-2 ${isMyMessage ? 'bg-neutral-400' : 'bg-neutral-300'}`}>
+          <Text className="text-xl">{content}</Text>
         </View>
       </View>
     </View>
@@ -162,7 +84,11 @@ const ChatInputSchema = z.object({
 
 type FormValuesType = z.infer<typeof ChatInputSchema>;
 
-export const ChatInputForm = () => {
+type ChatInputFormProps = {
+  onSend: (message: MessageType) => void;
+};
+
+export const ChatInputForm: FC<ChatInputFormProps> = ({onSend}) => {
   const {
     control,
     handleSubmit,
@@ -174,7 +100,7 @@ export const ChatInputForm = () => {
   });
 
   const onSubmit: SubmitHandler<FormValuesType> = data => {
-    console.log(data);
+    onSend({content: data.message, role: 'user'});
     Keyboard.dismiss();
     setValue('message', '');
   };
@@ -184,7 +110,7 @@ export const ChatInputForm = () => {
       behavior="position"
       className=""
       keyboardVerticalOffset={Platform.OS === 'ios' ? 64 : 0}>
-      <View className="flex w-full flex-row items-center bg-neutral-500 pt-2 pb-6">
+      <View className="flex w-full flex-row items-center bg-neutral-500 pb-6 pt-2">
         <View className="w-5/6 p-1">
           <Controller
             control={control}
