@@ -28,7 +28,7 @@ const Chat = () => {
 
   return (
     <View>
-      <ChatHeader name={'pied Peper'} avatar="https://i.pravatar.cc/300" />
+      <ChatHeader name={'pied Peper'} avatar="https://i.pravatar.cc/" />
       <ChatBody />
       <ChatInputForm />
     </View>

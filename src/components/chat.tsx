@@ -1,5 +1,14 @@
 import React, {FC} from 'react';
-import {Image, Text, TextInput, TouchableOpacity, View} from 'react-native';
+import {
+  Image,
+  Keyboard,
+  KeyboardAvoidingView,
+  Platform,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import {BackIcon, SendIcon} from '../svgs';
 import {Controller, SubmitHandler, useForm} from 'react-hook-form';
 import {z} from 'zod';
@@ -158,6 +167,7 @@ export const ChatInputForm = () => {
     control,
     handleSubmit,
     formState: {errors},
+    setValue,
   } = useForm<FormValuesType>({
     resolver: zodResolver(ChatInputSchema),
     defaultValues: {message: ''},
@@ -165,33 +175,40 @@ export const ChatInputForm = () => {
 
   const onSubmit: SubmitHandler<FormValuesType> = data => {
     console.log(data);
+    Keyboard.dismiss();
+    setValue('message', '');
   };
 
   return (
-    <View className="fixed bottom-0 flex w-full flex-row items-center bg-neutral-500 py-1">
-      <View className="w-5/6 p-1">
-        <Controller
-          control={control}
-          rules={{
-            required: true,
-          }}
-          render={({field: {onChange, onBlur, value}}) => (
-            <TextInput
-              placeholder="Message"
-              onBlur={onBlur}
-              onChangeText={onChange}
-              value={value}
-              className={`rounded-xl bg-white shadow-red-600 ${errors.message ? 'animate-bounce' : 'animate-none'}`}
-            />
-          )}
-          name="message"
-        />
+    <KeyboardAvoidingView
+      behavior="position"
+      className=""
+      keyboardVerticalOffset={Platform.OS === 'ios' ? 64 : 0}>
+      <View className="flex w-full flex-row items-center bg-neutral-500 pt-2 pb-6">
+        <View className="w-5/6 p-1">
+          <Controller
+            control={control}
+            rules={{
+              required: true,
+            }}
+            render={({field: {onChange, onBlur, value}}) => (
+              <TextInput
+                placeholder="Message"
+                onBlur={onBlur}
+                onChangeText={onChange}
+                value={value}
+                className={`rounded-xl bg-white px-3 text-xl shadow-red-600 ${errors.message ? 'animate-bounce' : 'animate-none'}`}
+              />
+            )}
+            name="message"
+          />
+        </View>
+        <TouchableOpacity
+          onPress={handleSubmit(onSubmit)}
+          className="m-auto rounded-full bg-neutral-200 p-2">
+          <SendIcon width={30} height={30} fill={'none'} />
+        </TouchableOpacity>
       </View>
-      <TouchableOpacity
-        onPress={handleSubmit(onSubmit)}
-        className="m-auto rounded-full bg-neutral-200 p-2">
-        <SendIcon width={30} height={30} fill={'none'} />
-      </TouchableOpacity>
-    </View>
+    </KeyboardAvoidingView>
   );
 };
