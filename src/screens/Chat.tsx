@@ -1,36 +1,48 @@
-import {useQuery} from '@tanstack/react-query';
-import React from 'react';
+import {useMutation, useQuery} from '@tanstack/react-query';
+import React, {FC, useState} from 'react';
 import {Text, View} from 'react-native';
 import {query} from '../services';
 import {ChatBody, ChatHeader, ChatInputForm} from '../components/chat';
+import {RootStackParamList} from '../types/nivigation';
+import {RouteProp} from '@react-navigation/native';
+import Celebrities from '../config/celebrities';
+import {MessageType} from '../types/message';
+import {Alert} from 'react-native';
 
-const Chat = () => {
-  //const {data, isPending, error} = useQuery({
-  //  queryKey: ['chat'],
-  //  queryFn: query,
-  //});
+type ItemDetailsScreenRouteProp = RouteProp<RootStackParamList, 'Chat'>;
 
-  //if (isPending) {
-  //  return (
-  //    <View>
-  //      <Text className=" text-5xl">Loading</Text>
-  //    </View>
-  //  );
-  // }
+interface ChatScreenProps {
+  route: ItemDetailsScreenRouteProp;
+}
 
-  //if (error) {
-  // return (
-  //   <View>
-  //    <Text className="text-5xl text-red-500">Error</Text>
-  //  </View>
-  // );
-  //}
+const Chat: FC<ChatScreenProps> = ({route}) => {
+  const person = Celebrities[route.params.id];
+  const [messages, setMessages] = useState<MessageType[]>([]);
+
+  const sendMessageMutation = useMutation({
+    mutationFn: query,
+    onSuccess(data) {
+      setMessages(prev => [...prev, ...data.choices.map(item => item.message)]);
+    },
+    onError() {
+      Alert.alert('Error');
+    },
+  });
+
+  const onSendMessage = ({content, role}: MessageType) => {
+    setMessages(prev => [...prev, {content, role}]);
+    sendMessageMutation.mutate({personName: person.name, message: content});
+  };
 
   return (
     <View>
-      <ChatHeader name={'pied Peper'} avatar="https://i.pravatar.cc/300" />
-      <ChatBody />
-      <ChatInputForm />
+      <ChatHeader
+        isTyping={sendMessageMutation.isPending}
+        name={person.name}
+        avatar={person.photoUrl}
+      />
+      <ChatBody messages={messages} />
+      <ChatInputForm onSend={onSendMessage} />
     </View>
   );
 };

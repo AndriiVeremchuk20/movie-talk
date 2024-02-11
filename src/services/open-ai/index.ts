@@ -1,25 +1,33 @@
 import OpenAiClient from './client';
+import {ChatCompletion} from './types';
 
-export const query = async () => {
+export const query = async ({
+  personName,
+  message,
+}: {
+  personName: string;
+  message: string;
+}) => {
   const body = {
     model: 'gpt-3.5-turbo',
     messages: [
       {
         role: 'system',
-        content:
-          'You are a poetic assistant, skilled in explaining complex programming concepts with creative flair.',
+        content: `Talk like youre ${personName}. But but answer briefly.`,
       },
       {
         role: 'user',
-        content:
-          'Compose a poem that explains the concept of recursion in programming.',
+        content: message,
       },
     ],
   };
 
-  const response = await OpenAiClient.post('chat/completions', body);
+  const response = await OpenAiClient.post<ChatCompletion>(
+    'chat/completions',
+    body,
+  );
 
-  console.log(response.data);
+  console.log(JSON.stringify(response.data));
 
   return response.data;
 };
