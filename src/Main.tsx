@@ -13,7 +13,11 @@ const Main = () => {
         component={Home}
         options={{headerShown: false}}
       />
-      <Stack.Screen name="Chat" component={Chat} options={{title: 'chat'}} />
+      <Stack.Screen
+        name="Chat"
+        component={Chat}
+        options={{headerShown: false}}
+      />
     </Stack.Navigator>
   );
 };
