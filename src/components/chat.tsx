@@ -28,12 +28,14 @@ export const ChatHeader: FC<ChatHeaerPorps> = ({name, avatar, isTyping}) => {
   const navigation = useNavigation();
 
   const handleBackPress = () => {
-	navigation.goBack();
-  }
+    navigation.goBack();
+  };
 
   return (
     <View className="flex w-full flex-row justify-between bg-neutral-500 p-3">
-      <TouchableOpacity onPress={handleBackPress} className="flex flex-row items-center rounded-full bg-neutral-400 p-2">
+      <TouchableOpacity
+        onPress={handleBackPress}
+        className="flex flex-row items-center rounded-full bg-neutral-400 p-2">
         <BackIcon width={20} height={20} />
       </TouchableOpacity>
       <View className="flex flex-row items-center space-x-2">
