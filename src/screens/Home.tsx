@@ -5,12 +5,14 @@ import {
   Text,
   View,
 } from 'react-native';
-import Celebrities from '../config/celebrities';
-import {CelebrityPerson} from '../components/CelebrityPerson';
+import Heros from '../config/heros';
+import {HeroCard} from '../components/HeroCard';
 import {FC, useState} from 'react';
 import {Button} from '../common';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RootStackParamList} from '../types/nivigation';
+import Search from '../components/Search';
+import Hero from '../types/hero';
 
 type HomeScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
@@ -21,11 +23,20 @@ type HomeProps = {
   navigation: HomeScreenNavigationProp;
 };
 
+// check internet speed
+
 const Home: FC<HomeProps> = ({navigation}) => {
   const [showCelebrities, setShowCelebrities] = useState<boolean>(false);
+  const [heroList, setHeroList] = useState<Hero[]>(Heros);
 
   const handleButtonPress = () => {
     setShowCelebrities(true);
+  };
+
+  const handleUserSearch = (searchStr: string) => {
+    setHeroList(
+      Heros.filter(h => h.name.toLowerCase().includes(searchStr.toLowerCase())),
+    );
   };
 
   if (!showCelebrities) {
@@ -36,12 +47,12 @@ const Home: FC<HomeProps> = ({navigation}) => {
           width: '100%',
         }}
         source={{
-          uri: 'https://media.wallpaperchill.com/720x1560-wallpapers/sky-phone-wallpaper.jpg',
+          uri: 'https://wallpapers.com/images/hd/american-movie-posters-z0puq43u0qbtr6j2.jpg',
         }}>
         <View className="flex h-screen items-center justify-center p-2">
-          <View className="space-y4 flex h-[200px] w-full flex-col justify-around rounded-xl border-[4px] border-neutral-800 bg-neutral-200 px-4 py-3 shadow-2xl  shadow-neutral-800">
+          <View className="space-y4 flex h-[200px] w-full flex-col justify-around rounded-xl border-[4px] border-neutral-800 bg-neutral-200 bg-opacity-20 px-4">
             <Text className="text-center text-4xl text-black">
-              Tap to chat with history!
+              Tap to chat with Your hero!
             </Text>
             <Button
               onPress={handleButtonPress}
@@ -59,10 +70,13 @@ const Home: FC<HomeProps> = ({navigation}) => {
   return (
     <SafeAreaView>
       <View>
+        <Search onInput={handleUserSearch} />
+      </View>
+      <View className="mb-[120px]">
         <FlatList
-          data={Celebrities}
+          data={heroList}
           renderItem={({item}) => (
-            <CelebrityPerson person={item} navigation={navigation} />
+            <HeroCard hero={item} navigation={navigation} />
           )}
         />
       </View>

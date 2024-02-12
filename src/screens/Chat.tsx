@@ -2,10 +2,10 @@ import {useMutation} from '@tanstack/react-query';
 import React, {FC, useState} from 'react';
 import {View} from 'react-native';
 import {query} from '../services';
-import {ChatBody, ChatHeader, ChatInputForm} from '../components/chat';
+import {ChatBody, ChatHeader, ChatInputForm} from '../components/Chat';
 import {RootStackParamList} from '../types/nivigation';
 import {RouteProp} from '@react-navigation/native';
-import Celebrities from '../config/celebrities';
+import Heros from '../config/heros';
 import {MessageType} from '../types/message';
 import {Alert} from 'react-native';
 
@@ -16,7 +16,7 @@ interface ChatScreenProps {
 }
 
 const Chat: FC<ChatScreenProps> = ({route}) => {
-  const person = Celebrities.filter(p => p.id === route.params.id)![0];
+  const person = Heros.filter(p => p.id === route.params.id)![0];
   const [messages, setMessages] = useState<MessageType[]>([]);
 
   const sendMessageMutation = useMutation({
@@ -33,7 +33,7 @@ const Chat: FC<ChatScreenProps> = ({route}) => {
     setMessages(prev => [...prev, {content, role}]);
     sendMessageMutation.mutate({
       personName: person.name,
-      message: content,
+      messages: [...messages, {content, role}],
       movieName: person.movie,
     });
   };

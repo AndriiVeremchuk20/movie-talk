@@ -1,8 +1,13 @@
-import Celebrity from '../types/celebrities';
+import Hero from '../types/hero';
 
-// add Stan Lee
+// add velley vonka
+// jon uik
+// бесславные ублюдки
+// Paddington
+// saw
+// образцовий самец
 
-const Celebrities: Celebrity[] = [
+const Heros: Hero[] = [
   {
     id: 1,
     name: 'Mickey Mouse',
@@ -212,6 +217,7 @@ const Celebrities: Celebrity[] = [
     movie: 'Rick and Morty',
     photoUrl: 'https://upload.wikimedia.org/wikipedia/en/a/a6/Rick_Sanchez.png',
   },
+
   {
     id: 38,
     name: 'Art',
@@ -304,6 +310,13 @@ const Celebrities: Celebrity[] = [
     photoUrl:
       'https://i0.wp.com/bamfstyle.com/wp-content/uploads/2021/03/Dude1Robe-MAIN1.jpg?ssl=1',
   },
+  {
+    id: 66,
+    name: 'Borat',
+    movie: 'The Borat',
+    photoUrl:
+      'https://upload.wikimedia.org/wikipedia/commons/7/7e/Borat_in_Cologne.jpg',
+  },
 ];
 
-export default Celebrities;
+export default Heros;
