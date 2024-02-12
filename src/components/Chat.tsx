@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, useEffect, useRef} from 'react';
 import {
   Image,
   Keyboard,
@@ -44,7 +44,7 @@ export const ChatHeader: FC<ChatHeaerPorps> = ({name, avatar, isTyping}) => {
         <View className="rounded-full border-2 border-green-500 p-[1px]">
           <Image
             source={{uri: avatar}}
-            className="h-[50px] w-[50px] rounded-full"
+            className="h-[50px] w-[50px] rounded-full bg-neutral-100"
           />
         </View>
       </View>
@@ -57,9 +57,16 @@ type ChatBodyProps = {
 };
 
 export const ChatBody: FC<ChatBodyProps> = ({messages}) => {
+  const MassagesRef = useRef<FlatList | null>(null);
+
+  useEffect(() => {
+    MassagesRef.current?.scrollToEnd();
+  }, [messages]);
+
   return (
     <SafeAreaView className="h-[610px] pb-5">
       <FlatList
+        ref={MassagesRef}
         data={messages}
         renderItem={({item}) => <ChatMessage message={item} />}
         className="m-1"

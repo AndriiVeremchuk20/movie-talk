@@ -10,22 +10,25 @@ type ListScreenNavigationProp = NativeStackNavigationProp<
 >;
 
 interface HeroCardProps {
-  person: Hero;
+  hero: Hero;
   navigation: ListScreenNavigationProp;
 }
 
-export const HeroCard: FC<HeroCardProps> = ({person, navigation}) => {
+export const HeroCard: FC<HeroCardProps> = ({hero, navigation}) => {
   const onPress = () => {
-    navigation.navigate('Chat', {id: person.id});
+    navigation.navigate('Chat', {id: hero.id});
   };
 
   return (
     <TouchableOpacity
       onPress={onPress}
-      className="m-4 flex flex-row items-center justify-center rounded-2xl bg-neutral-300">
-      <Image source={{uri: person.photoUrl}} className="h-[100px] w-[100px]" />
-      <View className="bg-neutral-400 px-2 py-3">
-        <Text className="w-[230px] text-3xl font-bold">{person.name}</Text>
+      className={`m-4 flex h-[100px] flex-row items-center justify-between rounded-2xl bg-neutral-300`}>
+      <Image
+        source={{uri: hero.photoUrl}}
+        className="h-[120px] w-[100px] rounded-xl"
+      />
+      <View className="px-2 py-3">
+        <Text className="w-[230px] text-3xl font-bold">{hero.name}</Text>
       </View>
     </TouchableOpacity>
   );

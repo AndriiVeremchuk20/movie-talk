@@ -1,5 +1,12 @@
 import Hero from '../types/hero';
 
+// add velley vonka
+// jon uik
+// бесславные ублюдки
+// Paddington
+// saw
+// образцовий самец
+
 const Heros: Hero[] = [
   {
     id: 1,
@@ -210,6 +217,7 @@ const Heros: Hero[] = [
     movie: 'Rick and Morty',
     photoUrl: 'https://upload.wikimedia.org/wikipedia/en/a/a6/Rick_Sanchez.png',
   },
+
   {
     id: 38,
     name: 'Art',
@@ -309,11 +317,6 @@ const Heros: Hero[] = [
     photoUrl:
       'https://upload.wikimedia.org/wikipedia/commons/7/7e/Borat_in_Cologne.jpg',
   },
-  // add velley vonka
-  // jon uik
-  // бесславные ублюдки
-  // Paddington
-  // saw
 ];
 
 export default Heros;

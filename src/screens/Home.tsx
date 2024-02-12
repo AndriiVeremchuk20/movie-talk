@@ -11,6 +11,8 @@ import {FC, useState} from 'react';
 import {Button} from '../common';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RootStackParamList} from '../types/nivigation';
+import Search from '../components/Search';
+import Hero from '../types/hero';
 
 type HomeScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
@@ -21,11 +23,20 @@ type HomeProps = {
   navigation: HomeScreenNavigationProp;
 };
 
+// check internet speed
+
 const Home: FC<HomeProps> = ({navigation}) => {
   const [showCelebrities, setShowCelebrities] = useState<boolean>(false);
+  const [heroList, setHeroList] = useState<Hero[]>(Heros);
 
   const handleButtonPress = () => {
     setShowCelebrities(true);
+  };
+
+  const handleUserSearch = (searchStr: string) => {
+    setHeroList(
+      Heros.filter(h => h.name.toLowerCase().includes(searchStr.toLowerCase())),
+    );
   };
 
   if (!showCelebrities) {
@@ -59,10 +70,13 @@ const Home: FC<HomeProps> = ({navigation}) => {
   return (
     <SafeAreaView>
       <View>
+        <Search onInput={handleUserSearch} />
+      </View>
+      <View className="mb-[120px]">
         <FlatList
-          data={Heros}
+          data={heroList}
           renderItem={({item}) => (
-            <HeroCard person={item} navigation={navigation} />
+            <HeroCard hero={item} navigation={navigation} />
           )}
         />
       </View>
