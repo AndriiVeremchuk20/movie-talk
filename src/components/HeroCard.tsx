@@ -1,4 +1,4 @@
-import type Celebrity from '@/src/types/celebrities';
+import type Hero from '@/src/types/hero';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import React, {FC} from 'react';
 import {Image, Text, TouchableOpacity, View} from 'react-native';
@@ -9,12 +9,12 @@ type ListScreenNavigationProp = NativeStackNavigationProp<
   'Chat'
 >;
 
-interface CelebretyProps {
-  person: Celebrity;
+interface HeroCardProps {
+  person: Hero;
   navigation: ListScreenNavigationProp;
 }
 
-export const CelebrityPerson: FC<CelebretyProps> = ({person, navigation}) => {
+export const HeroCard: FC<HeroCardProps> = ({person, navigation}) => {
   const onPress = () => {
     navigation.navigate('Chat', {id: person.id});
   };
