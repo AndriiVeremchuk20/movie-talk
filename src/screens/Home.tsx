@@ -10,7 +10,7 @@ import {HeroCard} from '../components/HeroCard';
 import {FC, useState} from 'react';
 import {Button} from '../common';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import {RootStackParamList} from '../types/nivigation';
+import {RootStackParamList} from '../types/navigation';
 import Search from '../components/Search';
 import Hero from '../types/hero';
 
@@ -47,10 +47,10 @@ const Home: FC<HomeProps> = ({navigation}) => {
           width: '100%',
         }}
         source={{
-          uri: 'https://wallpapers.com/images/hd/american-movie-posters-z0puq43u0qbtr6j2.jpg',
+          uri: 'https://e0.pxfuel.com/wallpapers/97/342/desktop-wallpaper-marvel-superhero-anime-face-side-view-iphone-11-pro-xs-max-background.jpg',
         }}>
         <View className="flex h-screen items-center justify-center p-2">
-          <View className="space-y4 flex h-[200px] w-full flex-col justify-around rounded-xl border-[4px] border-neutral-800 bg-neutral-200 bg-opacity-20 px-4">
+          <View className="space-y4 flex h-[200px] w-full flex-col justify-around border-[5px] border-neutral-800 bg-neutral-200 bg-opacity-20 px-4">
             <Text className="text-center text-4xl text-black">
               Tap to chat with Your hero!
             </Text>

@@ -3,7 +3,7 @@ import React, {FC, useState} from 'react';
 import {View} from 'react-native';
 import {query} from '../services';
 import {ChatBody, ChatHeader, ChatInputForm} from '../components/Chat';
-import {RootStackParamList} from '../types/nivigation';
+import {RootStackParamList} from '../types/navigation';
 import {RouteProp} from '@react-navigation/native';
 import Heros from '../config/heros';
 import {MessageType} from '../types/message';
