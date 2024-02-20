@@ -3,7 +3,6 @@ import {
   Image,
   Keyboard,
   KeyboardAvoidingView,
-  Platform,
   Text,
   TextInput,
   TouchableOpacity,
@@ -32,19 +31,21 @@ export const ChatHeader: FC<ChatHeaerPorps> = ({name, avatar, isTyping}) => {
   };
 
   return (
-    <View className="flex w-full flex-row justify-between bg-neutral-500 p-3">
+    <View className="fixed top-0 flex w-full flex-row justify-between bg-neutral-500 p-3">
       <TouchableOpacity
         onPress={handleBackPress}
         className="flex flex-row items-center rounded-full bg-neutral-400 p-2">
         <BackIcon width={20} height={20} />
       </TouchableOpacity>
-      <View className="flex flex-row items-center space-x-2">
-        {isTyping ? <Text>typing</Text> : null}
-        <Text className="text-xl text-white">{name}</Text>
+      <View className="flex flex-row items-center space-x-3">
+        {isTyping ? (
+          <Text className="animate-ping text-white">typing</Text>
+        ) : null}
+        <Text className="text-xl font-bold text-white">{name}</Text>
         <View className="rounded-full border-2 border-green-500 p-[1px]">
           <Image
             source={{uri: avatar}}
-            className="h-[50px] w-[50px] rounded-full bg-neutral-100"
+            className="h-[50px] w-[50px] rounded-b-full"
           />
         </View>
       </View>
@@ -64,12 +65,12 @@ export const ChatBody: FC<ChatBodyProps> = ({messages}) => {
   }, [messages]);
 
   return (
-    <SafeAreaView className="h-[610px] pb-5">
+    <SafeAreaView className="h-[600px]">
       <FlatList
         ref={MassagesRef}
         data={messages}
         renderItem={({item}) => <ChatMessage message={item} />}
-        className="m-1"
+        className="m-2 mb-5"
       />
     </SafeAreaView>
   );
@@ -116,41 +117,37 @@ export const ChatInputForm: FC<ChatInputFormProps> = ({onSend}) => {
   });
 
   const onSubmit: SubmitHandler<FormValuesType> = data => {
+    if (!data.message) return;
     onSend({content: data.message, role: 'user'});
     Keyboard.dismiss();
     setValue('message', '');
   };
 
   return (
-    <KeyboardAvoidingView
-      behavior="position"
-      className=""
-      keyboardVerticalOffset={Platform.OS === 'ios' ? 64 : 0}>
-      <View className="flex w-full flex-row items-center bg-neutral-500 pb-6 pt-2">
-        <View className="w-5/6 p-1">
-          <Controller
-            control={control}
-            rules={{
-              required: true,
-            }}
-            render={({field: {onChange, onBlur, value}}) => (
-              <TextInput
-                placeholder="Message"
-                onBlur={onBlur}
-                onChangeText={onChange}
-                value={value}
-                className={`rounded-xl bg-white px-3 text-xl shadow-red-600 ${errors.message ? 'animate-bounce' : 'animate-none'}`}
-              />
-            )}
-            name="message"
-          />
-        </View>
-        <TouchableOpacity
-          onPress={handleSubmit(onSubmit)}
-          className="m-auto rounded-full bg-neutral-200 p-2">
-          <SendIcon width={30} height={30} fill={'none'} />
-        </TouchableOpacity>
+    <View className="flex w-full flex-row items-center bg-neutral-500 py-2">
+      <View className="w-5/6 p-1">
+        <Controller
+          control={control}
+          rules={{
+            required: true,
+          }}
+          render={({field: {onChange, onBlur, value}}) => (
+            <TextInput
+              placeholder="Message"
+              onBlur={onBlur}
+              onChangeText={onChange}
+              value={value}
+              className={`rounded-xl bg-white px-3 text-xl shadow-red-600 ${errors.message ? 'animate-bounce' : 'animate-none'}`}
+            />
+          )}
+          name="message"
+        />
       </View>
-    </KeyboardAvoidingView>
+      <TouchableOpacity
+        onPress={handleSubmit(onSubmit)}
+        className="m-auto rounded-full bg-neutral-200 p-2">
+        <SendIcon width={30} height={30} fill={'none'} />
+      </TouchableOpacity>
+    </View>
   );
 };
