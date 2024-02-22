@@ -48,7 +48,7 @@ const Home: FC<HomeProps> = ({navigation}) => {
           <ChildIcon width={40} height={40} />
         </Button>
       </View>
-      <View className="mb-[120px]">
+      <View>
         <FlatList
           data={heroList}
           renderItem={({item}) => (
