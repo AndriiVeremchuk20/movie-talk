@@ -2,8 +2,6 @@ import {MessageType} from '@/src/types/message';
 import OpenAiClient from './client';
 import {ChatCompletion} from './types';
 
-// remember system message eatch 10 repclic
-
 export const query = async ({
   personName,
   movieName,
@@ -19,12 +17,12 @@ export const query = async ({
     messages: [
       {
         role: 'system',
-        content: `Talk like youre ${personName} from ${movieName} and other series. But but answer briefly asso use emoji.`,
+        content: `Talk like you're ${personName} from ${movieName} and other series. But answer briefly and use emojis. Be as realistic as possible. If you need to swear, swear. If you need to scare, scare. Completely copy the character's habits.`,
       },
       ...messages,
       {
         role: 'system',
-        content: `Talk like youre ${personName} from ${movieName} and other series. But but answer briefly asso use emoji.`,
+        content: `Talk like you're ${personName} from ${movieName} and other series. But answer briefly and use emojis. Be as realistic as possible. If you need to swear, swear. If you need to scare, scare. Completely copy the character's habits.`,
       },
     ],
   };
@@ -33,8 +31,6 @@ export const query = async ({
     'chat/completions',
     body,
   );
-
-  console.log(JSON.stringify(response.data));
 
   return response.data;
 };

@@ -42,7 +42,7 @@ export const ChatHeader: FC<ChatHeaerPorps> = ({name, avatar, isTyping}) => {
           <Text className="animate-ping text-white">typing</Text>
         ) : null}
         <Text className="text-xl font-bold text-white">{name}</Text>
-        <View className="rounded-full border-2 border-green-500 p-[1px]">
+        <View className="rounded-full border-2 border-green-500 bg-white p-[1px]">
           <Image
             source={{uri: avatar}}
             className="h-[50px] w-[50px] rounded-b-full"
