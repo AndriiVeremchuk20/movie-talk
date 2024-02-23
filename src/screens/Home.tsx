@@ -8,7 +8,7 @@ import Hero from '../types/hero';
 import {useAppStore} from '../store';
 import {WelcomPage} from '../components/WelcomPage';
 import {Button} from '../common';
-import {AdultIcon, ChildIcon} from '../svgs';
+import {JokerIcon, MinionIcon} from '../svgs';
 
 type HomeScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
@@ -39,13 +39,13 @@ const Home: FC<HomeProps> = ({navigation}) => {
           onPress={() => setCurrGenre('movie')}
           className="wflex w-1/2 flex-row justify-center space-x-3 border-[3px] border-neutral-200 p-3">
           <Text className="text-3xl">Movie</Text>
-          <AdultIcon width={40} height={40} />
+          <JokerIcon width={40} height={40} />
         </Button>
         <Button
           onPress={() => setCurrGenre('cartoon')}
           className="flex w-1/2 flex-row justify-center space-x-3 border-[3px] border-neutral-200 p-3">
           <Text className="text-3xl">Cartoon</Text>
-          <ChildIcon width={40} height={40} />
+          <MinionIcon width={40} height={40} />
         </Button>
       </View>
       <View>
