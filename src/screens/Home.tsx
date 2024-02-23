@@ -36,15 +36,17 @@ const Home: FC<HomeProps> = ({navigation}) => {
     <SafeAreaView>
       <View className="flex flex-row items-center">
         <Button
+          disabled={currGenre === 'movie'}
           onPress={() => setCurrGenre('movie')}
-          className="wflex w-1/2 flex-row justify-center space-x-3 border-[3px] border-neutral-200 p-3">
-          <Text className="text-3xl">Movie</Text>
+          className="flex w-1/2 flex-row space-x-3 border-[3px] border-neutral-200 p-3">
+          <Text className="text-3xl text-neutral-400">Movies</Text>
           <JokerIcon width={40} height={40} />
         </Button>
         <Button
+          disabled={currGenre === 'cartoon'}
           onPress={() => setCurrGenre('cartoon')}
           className="flex w-1/2 flex-row justify-center space-x-3 border-[3px] border-neutral-200 p-3">
-          <Text className="text-3xl">Cartoon</Text>
+          <Text className="text-3xl text-neutral-400">Cartoons</Text>
           <MinionIcon width={40} height={40} />
         </Button>
       </View>
