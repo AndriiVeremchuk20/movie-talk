@@ -31,7 +31,7 @@ export const ChatHeader: FC<ChatHeaerPorps> = ({name, avatar, isTyping}) => {
   };
 
   return (
-    <View className="fixed top-0 flex w-full flex-row justify-between bg-neutral-500 p-3">
+    <View className="flex w-full flex-row justify-between bg-neutral-500 p-3">
       <TouchableOpacity
         onPress={handleBackPress}
         className="flex flex-row items-center rounded-full bg-neutral-400 p-2">
@@ -65,7 +65,7 @@ export const ChatBody: FC<ChatBodyProps> = ({messages}) => {
   }, [messages]);
 
   return (
-    <SafeAreaView className="h-[600px]">
+    <SafeAreaView className="h-[610px]">
       <FlatList
         ref={MassagesRef}
         data={messages}
@@ -124,30 +124,32 @@ export const ChatInputForm: FC<ChatInputFormProps> = ({onSend}) => {
   };
 
   return (
-    <View className="flex w-full flex-row items-center bg-neutral-500 py-2">
-      <View className="w-5/6 p-1">
-        <Controller
-          control={control}
-          rules={{
-            required: true,
-          }}
-          render={({field: {onChange, onBlur, value}}) => (
-            <TextInput
-              placeholder="Message"
-              onBlur={onBlur}
-              onChangeText={onChange}
-              value={value}
-              className={`rounded-xl bg-white px-3 text-xl shadow-red-600 ${errors.message ? 'animate-bounce' : 'animate-none'}`}
-            />
-          )}
-          name="message"
-        />
+    <KeyboardAvoidingView enabled={true} behavior="padding">
+      <View className="flex w-full flex-row items-center bg-neutral-500 py-2">
+        <View className="w-5/6 p-1">
+          <Controller
+            control={control}
+            rules={{
+              required: true,
+            }}
+            render={({field: {onChange, onBlur, value}}) => (
+              <TextInput
+                placeholder="Message"
+                onBlur={onBlur}
+                onChangeText={onChange}
+                value={value}
+                className={`rounded-xl bg-white px-3 text-xl shadow-red-600 ${errors.message ? 'animate-bounce' : 'animate-none'}`}
+              />
+            )}
+            name="message"
+          />
+        </View>
+        <TouchableOpacity
+          onPress={handleSubmit(onSubmit)}
+          className="m-auto rounded-full bg-neutral-200 p-2">
+          <SendIcon width={30} height={30} fill={'none'} />
+        </TouchableOpacity>
       </View>
-      <TouchableOpacity
-        onPress={handleSubmit(onSubmit)}
-        className="m-auto rounded-full bg-neutral-200 p-2">
-        <SendIcon width={30} height={30} fill={'none'} />
-      </TouchableOpacity>
-    </View>
+    </KeyboardAvoidingView>
   );
 };

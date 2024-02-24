@@ -7,8 +7,7 @@ import {RootStackParamList} from '../types/navigation';
 import Hero from '../types/hero';
 import {useAppStore} from '../store';
 import {WelcomPage} from '../components/WelcomPage';
-import {Button} from '../common';
-import {JokerIcon, MinionIcon} from '../svgs';
+import {ChooseGenre} from '../components/ChooseGenre';
 
 type HomeScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
@@ -20,44 +19,26 @@ type HomeProps = {
 };
 
 const Home: FC<HomeProps> = ({navigation}) => {
-  const {showStartPage} = useAppStore();
-  const [currGenre, setCurrGenre] = useState<'movie' | 'cartoon'>('movie');
+  const {showStartPage, genre} = useAppStore();
   const [heroList, setHeroList] = useState<Hero[]>(Heros);
 
   useEffect(() => {
-    setHeroList(Heros.filter(h => h.genre === currGenre));
-  }, [currGenre]);
+    setHeroList(Heros.filter(h => h.genre === genre));
+  }, [genre]);
 
   if (showStartPage) {
     return <WelcomPage />;
   }
 
   return (
-    <SafeAreaView>
-      <View className="flex flex-row items-center">
-        <Button
-          disabled={currGenre === 'movie'}
-          onPress={() => setCurrGenre('movie')}
-          className="flex w-1/2 flex-row space-x-3 border-[3px] border-neutral-200 p-3">
-          <Text className="text-3xl text-neutral-400">Movies</Text>
-          <JokerIcon width={40} height={40} />
-        </Button>
-        <Button
-          disabled={currGenre === 'cartoon'}
-          onPress={() => setCurrGenre('cartoon')}
-          className="flex w-1/2 flex-row justify-center space-x-3 border-[3px] border-neutral-200 p-3">
-          <Text className="text-3xl text-neutral-400">Cartoons</Text>
-          <MinionIcon width={40} height={40} />
-        </Button>
-      </View>
-      <View>
-        <FlatList
-          data={heroList}
-          renderItem={({item}) => (
-            <HeroCard hero={item} navigation={navigation} />
-          )}
-        />
-      </View>
+    <SafeAreaView className="">
+      <ChooseGenre />
+      <FlatList
+        data={heroList}
+        renderItem={({item}) => (
+          <HeroCard hero={item} navigation={navigation} />
+        )}
+      />
     </SafeAreaView>
   );
 };
