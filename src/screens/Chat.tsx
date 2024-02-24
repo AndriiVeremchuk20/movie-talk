@@ -1,6 +1,6 @@
 import {useMutation} from '@tanstack/react-query';
 import React, {FC, useState} from 'react';
-import {View} from 'react-native';
+import {KeyboardAvoidingView, SafeAreaView, View} from 'react-native';
 import {query} from '../services';
 import {ChatBody, ChatHeader, ChatInputForm} from '../components/Chat';
 import {RootStackParamList} from '../types/navigation';
@@ -40,13 +40,16 @@ const Chat: FC<ChatScreenProps> = ({route}) => {
 
   return (
     <View>
-      <ChatHeader
-        isTyping={sendMessageMutation.isPending}
-        name={person.name}
-        avatar={person.photoUrl}
-      />
-      <ChatBody messages={messages} />
-      <ChatInputForm onSend={onSendMessage} />
+      <SafeAreaView>
+        <ChatHeader
+          isTyping={sendMessageMutation.isPending}
+          name={person.name}
+          avatar={person.photoUrl}
+        />
+
+        <ChatBody messages={messages} />
+        <ChatInputForm onSend={onSendMessage} />
+      </SafeAreaView>
     </View>
   );
 };
