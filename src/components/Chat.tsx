@@ -66,7 +66,7 @@ export const ChatBody: FC<ChatBodyProps> = ({messages}) => {
   }, [messages]);
 
   return (
-    <View className="flex flex-auto flex-col">
+    <View className="flex flex-1 flex-col">
       {messages.length === 0 ? (
         <View className="flex h-full items-center justify-center">
           <Text>Write something to start chat</Text>
@@ -131,30 +131,32 @@ export const ChatInputForm: FC<ChatInputFormProps> = ({onSend}) => {
   };
 
   return (
-    <View className="flex w-full flex-row items-center space-x-2 bg-neutral-500 p-2 ">
-      <View className="flex-1">
-        <Controller
-          control={control}
-          rules={{
-            required: true,
-          }}
-          render={({field: {onChange, onBlur, value}}) => (
-            <TextInput
-              placeholder="Message"
-              onBlur={onBlur}
-              onChangeText={onChange}
-              value={value}
-              className={`rounded-xl bg-white px-3 text-xl shadow-red-600 ${errors.message ? 'animate-bounce' : 'animate-none'}`}
-            />
-          )}
-          name="message"
-        />
+    <KeyboardAvoidingView behavior="padding">
+      <View className="flex w-full flex-row items-center space-x-2 bg-neutral-500 p-2 ">
+        <View className="flex-1">
+          <Controller
+            control={control}
+            rules={{
+              required: true,
+            }}
+            render={({field: {onChange, onBlur, value}}) => (
+              <TextInput
+                placeholder="Message"
+                onBlur={onBlur}
+                onChangeText={onChange}
+                value={value}
+                className={`rounded-xl bg-white px-3 text-xl shadow-red-600 ${errors.message ? 'animate-bounce' : 'animate-none'}`}
+              />
+            )}
+            name="message"
+          />
+        </View>
+        <TouchableOpacity
+          onPress={handleSubmit(onSubmit)}
+          className="m-auto rounded-full bg-neutral-200 p-2">
+          <SendIcon width={30} height={30} fill={'none'} />
+        </TouchableOpacity>
       </View>
-      <TouchableOpacity
-        onPress={handleSubmit(onSubmit)}
-        className="m-auto rounded-full bg-neutral-200 p-2">
-        <SendIcon width={30} height={30} fill={'none'} />
-      </TouchableOpacity>
-    </View>
+    </KeyboardAvoidingView>
   );
 };
