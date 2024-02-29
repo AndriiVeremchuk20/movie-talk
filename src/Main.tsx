@@ -2,8 +2,9 @@ import React from 'react';
 import Home from './screens/Home';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Chat from './screens/Chat';
+import {RootStackParamList} from './types/navigation';
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const Main = () => {
   return (

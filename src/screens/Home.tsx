@@ -1,6 +1,6 @@
 import {FlatList, SafeAreaView, Text, View} from 'react-native';
 import Heros from '../config/heros';
-import {HeroCard} from '../components/HeroCard';
+import {HeroCard} from '../components/Hero';
 import {FC, useEffect, useState} from 'react';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RootStackParamList} from '../types/navigation';
@@ -8,6 +8,7 @@ import Hero from '../types/hero';
 import {useAppStore} from '../store';
 import {WelcomPage} from '../components/WelcomPage';
 import {ChooseGenre} from '../components/ChooseGenre';
+import {ChatInputForm} from '../components/Chat';
 
 type HomeScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
@@ -20,10 +21,10 @@ type HomeProps = {
 
 const Home: FC<HomeProps> = ({navigation}) => {
   const {showStartPage, genre} = useAppStore();
-  const [heroList, setHeroList] = useState<Hero[]>(Heros);
+  const [heros, setHeros] = useState<Hero[]>(Heros);
 
   useEffect(() => {
-    setHeroList(Heros.filter(h => h.genre === genre));
+    setHeros(Heros.filter(h => h.genre === genre));
   }, [genre]);
 
   if (showStartPage) {
@@ -31,10 +32,10 @@ const Home: FC<HomeProps> = ({navigation}) => {
   }
 
   return (
-    <SafeAreaView className="">
+    <SafeAreaView>
       <ChooseGenre />
       <FlatList
-        data={heroList}
+        data={heros}
         renderItem={({item}) => (
           <HeroCard hero={item} navigation={navigation} />
         )}

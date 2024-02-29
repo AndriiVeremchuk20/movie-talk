@@ -39,18 +39,16 @@ const Chat: FC<ChatScreenProps> = ({route}) => {
   };
 
   return (
-    <View>
-      <SafeAreaView>
-        <ChatHeader
-          isTyping={sendMessageMutation.isPending}
-          name={person.name}
-          avatar={person.photoUrl}
-        />
+    <SafeAreaView className="h-full">
+      <ChatHeader
+        isTyping={sendMessageMutation.isPending}
+        name={person.name}
+        avatar={person.photoUrl}
+      />
 
-        <ChatBody messages={messages} />
-        <ChatInputForm onSend={onSendMessage} />
-      </SafeAreaView>
-    </View>
+      <ChatBody messages={messages} />
+      <ChatInputForm onSend={onSendMessage} />
+    </SafeAreaView>
   );
 };
 
