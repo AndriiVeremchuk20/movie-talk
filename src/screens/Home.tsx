@@ -8,7 +8,6 @@ import Hero from '../types/hero';
 import {useAppStore} from '../store';
 import {WelcomPage} from '../components/WelcomPage';
 import {ChooseGenre} from '../components/ChooseGenre';
-import {ChatInputForm} from '../components/Chat';
 
 type HomeScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
@@ -32,7 +31,7 @@ const Home: FC<HomeProps> = ({navigation}) => {
   }
 
   return (
-    <SafeAreaView>
+    <SafeAreaView className="flex-1 bg-white/40 dark:bg-black/90">
       <ChooseGenre />
       <FlatList
         data={heros}

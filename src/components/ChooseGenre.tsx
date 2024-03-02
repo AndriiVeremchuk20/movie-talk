@@ -7,19 +7,19 @@ export const ChooseGenre = () => {
   const {genre, setGenre} = useAppStore();
 
   return (
-    <View className="flex flex-row items-center">
+    <View className="flex flex-row items-center bg-orange-300 dark:bg-red-700">
       <Button
         disabled={genre === 'movie'}
         onPress={() => setGenre('movie')}
-        className="flex w-1/2 flex-row space-x-3 border-[3px] border-neutral-200 p-3">
-        <Text className="text-3xl text-neutral-400">Movies</Text>
+        className="flex-1 flex-row justify-center p-3">
+        <Text className="text-3xl text-white">Movies</Text>
         <JokerIcon width={40} height={40} />
       </Button>
       <Button
         disabled={genre === 'cartoon'}
         onPress={() => setGenre('cartoon')}
-        className="flex w-1/2 flex-row justify-center space-x-3 border-[3px] border-neutral-200 p-3">
-        <Text className="text-3xl text-neutral-400">Cartoons</Text>
+        className="flex-1 flex-row justify-center p-3">
+        <Text className="text-3xl text-white">Cartoons</Text>
         <MinionIcon width={40} height={40} />
       </Button>
     </View>
