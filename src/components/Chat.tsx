@@ -32,10 +32,8 @@ export const ChatHeader: FC<ChatHeaerPorps> = ({name, avatar, isTyping}) => {
   };
 
   return (
-    <View className="flex w-full flex-row justify-between bg-neutral-500 p-3">
-      <TouchableOpacity
-        onPress={handleBackPress}
-        className="flex flex-row items-center rounded-full bg-neutral-400 p-2">
+    <View className="flex w-full flex-row justify-between bg-orange-300 px-4 py-3 dark:bg-red-700">
+      <TouchableOpacity onPress={handleBackPress} className="my-auto">
         <BackIcon width={20} height={20} />
       </TouchableOpacity>
       <View className="flex flex-row items-center space-x-3">
@@ -66,7 +64,7 @@ export const ChatBody: FC<ChatBodyProps> = ({messages}) => {
   }, [messages]);
 
   return (
-    <View className="flex flex-1 flex-col">
+    <View className="flex flex-1 flex-col bg-white/50 dark:bg-black/80">
       {messages.length === 0 ? (
         <View className="flex h-full items-center justify-center">
           <Text>Write something to start chat</Text>
@@ -94,7 +92,7 @@ export const ChatMessage: FC<MessageProps> = ({message: {role, content}}) => {
       <View
         className={`flex flex-col ${isMyMessage ? 'items-end' : 'items-start'}`}>
         <View
-          className={`max-w-[300px] rounded-md p-2 ${isMyMessage ? 'bg-neutral-400' : 'bg-neutral-300'}`}>
+          className={`max-w-[300px] rounded-md p-2 ${isMyMessage ? 'bg-amber-300 dark:bg-rose-600' : 'bg-green-300 dark:bg-orange-700'}`}>
           <Text className="text-xl">{content}</Text>
         </View>
       </View>
@@ -131,32 +129,30 @@ export const ChatInputForm: FC<ChatInputFormProps> = ({onSend}) => {
   };
 
   return (
-    <KeyboardAvoidingView>
-      <View className="flex w-full flex-row items-center space-x-2 bg-neutral-500 p-2 ">
-        <View className="flex-1">
-          <Controller
-            control={control}
-            rules={{
-              required: true,
-            }}
-            render={({field: {onChange, onBlur, value}}) => (
-              <TextInput
-                placeholder="Message"
-                onBlur={onBlur}
-                onChangeText={onChange}
-                value={value}
-                className={`rounded-xl bg-white px-3 text-xl shadow-red-600 ${errors.message ? 'animate-bounce' : 'animate-none'}`}
-              />
-            )}
-            name="message"
-          />
-        </View>
-        <TouchableOpacity
-          onPress={handleSubmit(onSubmit)}
-          className="m-auto rounded-full bg-neutral-200 p-2">
-          <SendIcon width={30} height={30} fill={'none'} />
-        </TouchableOpacity>
+    <KeyboardAvoidingView className="flex w-full flex-row items-center space-x-2 bg-orange-400 p-2 dark:bg-red-700">
+      <View className="flex-1">
+        <Controller
+          control={control}
+          rules={{
+            required: true,
+          }}
+          render={({field: {onChange, onBlur, value}}) => (
+            <TextInput
+              placeholder="Message"
+              onBlur={onBlur}
+              onChangeText={onChange}
+              value={value}
+              className="rounded-full bg-white/40 px-3 text-xl shadow-red-600"
+            />
+          )}
+          name="message"
+        />
       </View>
+      <TouchableOpacity
+        onPress={handleSubmit(onSubmit)}
+        className="m-auto rounded-full bg-white/50 p-2">
+        <SendIcon width={30} height={30} fill={'none'} />
+      </TouchableOpacity>
     </KeyboardAvoidingView>
   );
 };

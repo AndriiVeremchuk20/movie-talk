@@ -3,6 +3,8 @@ import {OPEN_AI_API_KEY} from '@env';
 
 const baseURL = 'https://api.openai.com/v1/';
 
+console.log(OPEN_AI_API_KEY);
+
 if (!OPEN_AI_API_KEY) {
   throw new Error('Key not found');
 }

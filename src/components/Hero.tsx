@@ -23,13 +23,15 @@ export const HeroCard: FC<HeroCardProps> = ({hero, navigation}) => {
   return (
     <TouchableOpacity
       onPress={onPress}
-      className={`my-5 flex h-[90px] flex-row items-center justify-between rounded-2xl bg-neutral-200`}>
+      className="mx-4 my-4 flex h-[95px] flex-row items-center rounded-full bg-white/90 shadow shadow-black dark:bg-black/60 dark:shadow-white">
       <Image
         source={{uri: hero.photoUrl}}
-        className="h-[120px] w-[120px] rounded-b-full"
+        className="h-[110px] w-[110px] rounded-full bg-orange-300 dark:bg-red-700"
       />
       <View className="px-2 py-3">
-        <Text className="w-[230px] text-3xl font-bold">{hero.name}</Text>
+        <Text className="w-[230px] text-3xl font-bold text-neutral-400 dark:text-neutral-200">
+          {hero.name}
+        </Text>
       </View>
     </TouchableOpacity>
   );
