@@ -131,7 +131,7 @@ export const ChatInputForm: FC<ChatInputFormProps> = ({onSend}) => {
   };
 
   return (
-    <KeyboardAvoidingView behavior="padding">
+    <KeyboardAvoidingView>
       <View className="flex w-full flex-row items-center space-x-2 bg-neutral-500 p-2 ">
         <View className="flex-1">
           <Controller
