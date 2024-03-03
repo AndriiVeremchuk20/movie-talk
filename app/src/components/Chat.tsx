@@ -92,7 +92,7 @@ export const ChatMessage: FC<MessageProps> = ({message: {role, content}}) => {
       <View
         className={`flex flex-col ${isMyMessage ? 'items-end' : 'items-start'}`}>
         <View
-          className={`max-w-[300px] rounded-md p-2 ${isMyMessage ? 'bg-amber-300 dark:bg-rose-600' : 'bg-green-300 dark:bg-orange-700'}`}>
+          className={`max-w-[300px] rounded-md p-2 ${isMyMessage ? 'bg-amber-200 dark:bg-rose-600' : 'bg-orange-200 dark:bg-orange-700'}`}>
           <Text className="text-xl">{content}</Text>
         </View>
       </View>
