@@ -1,12 +1,13 @@
 import { Controller, Get } from '@nestjs/common';
-import { AppService } from './app.service';
+import { HeroService } from './hero.service';
+import { Hero } from '@prisma/client';
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
+  constructor(private readonly userService: HeroService) {}
 
   @Get()
-  getHello(): string {
-    return this.appService.getHello();
+  async getHeros(): Promise<Hero[]> {
+    return await this.userService.heros({});
   }
 }
