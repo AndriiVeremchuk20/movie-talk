@@ -15,6 +15,7 @@
     "db:pull": "prisma db pull",
     "db:format": "prisma format",
     "db:studio": "prisma studio",
+    "db:seed": "prisma db seed",
     "dev": "run-p db:start db:push start:dev",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
@@ -78,5 +79,8 @@
     ],
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
+  },
+  "prisma": {
+    "seed": "ts-node prisma/seed.ts"
   }
 }

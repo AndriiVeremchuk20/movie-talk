@@ -18,5 +18,6 @@ model Hero {
   name      String
   movie     String
   imageUrl  String
+  genre		String
   createdAt DateTime @default(now())
 }
