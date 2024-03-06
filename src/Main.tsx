@@ -4,27 +4,25 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Chat from './screens/Chat';
 import {RootStackParamList} from './types/navigation';
 import {WithNet} from './provider/WithNet';
-import {useNetInfo} from '@react-native-community/netinfo';
+import withConnection from './hooks/withConnection';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const Main = () => {
   return (
-    <WithNet>
-      <Stack.Navigator>
-        <Stack.Screen
-          name="Home"
-          component={Home}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name="Chat"
-          component={Chat}
-          options={{headerShown: false}}
-        />
-      </Stack.Navigator>
-    </WithNet>
+    <Stack.Navigator>
+      <Stack.Screen
+        name="Home"
+        component={Home}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="Chat"
+        component={Chat}
+        options={{headerShown: false}}
+      />
+    </Stack.Navigator>
   );
 };
 
-export default Main;
+export default withConnection(Main);
