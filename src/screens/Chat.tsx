@@ -1,7 +1,7 @@
 import {useMutation} from '@tanstack/react-query';
 import React, {FC, useState} from 'react';
-import {KeyboardAvoidingView, SafeAreaView, View} from 'react-native';
-import {query} from '../services';
+import {SafeAreaView} from 'react-native';
+import {sendMessage} from '../services/open-ai';
 import {ChatBody, ChatHeader, ChatInputForm} from '../components/Chat';
 import {RootStackParamList} from '../types/navigation';
 import {RouteProp} from '@react-navigation/native';
@@ -20,7 +20,7 @@ const Chat: FC<ChatScreenProps> = ({route}) => {
   const [messages, setMessages] = useState<MessageType[]>([]);
 
   const sendMessageMutation = useMutation({
-    mutationFn: query,
+    mutationFn: sendMessage,
     onSuccess(data) {
       setMessages(prev => [...prev, ...data.choices.map(item => item.message)]);
     },
@@ -32,7 +32,7 @@ const Chat: FC<ChatScreenProps> = ({route}) => {
   const onSendMessage = ({content, role}: MessageType) => {
     setMessages(prev => [...prev, {content, role}]);
     sendMessageMutation.mutate({
-      personName: person.name,
+      heroName: person.name,
       messages: [...messages, {content, role}],
       movieName: person.movie,
     });
