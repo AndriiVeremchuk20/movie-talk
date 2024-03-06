@@ -8,6 +8,7 @@ import Hero from '../types/hero';
 import {useAppStore} from '../store';
 import {WelcomPage} from '../components/WelcomPage';
 import {ChooseGenre} from '../components/ChooseGenre';
+import {useNetInfo} from '@react-native-community/netinfo';
 
 type HomeScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
@@ -20,8 +21,8 @@ type HomeProps = {
 
 const Home: FC<HomeProps> = ({navigation}) => {
   const {showStartPage, genre} = useAppStore();
-
   const [heros, setHeros] = useState<Hero[]>(Heros);
+
   useEffect(() => {
     setHeros(Heros.filter(h => h.genre === genre));
   }, [genre]);
@@ -32,6 +33,7 @@ const Home: FC<HomeProps> = ({navigation}) => {
 
   return (
     <SafeAreaView className="flex-1 bg-white/40 dark:bg-black/90">
+      <View></View>
       <ChooseGenre />
       <FlatList
         data={heros}
