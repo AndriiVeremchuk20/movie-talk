@@ -9,6 +9,7 @@ import {useAppStore} from '../store';
 import {WelcomPage} from '../components/WelcomPage';
 import {ChooseGenre} from '../components/ChooseGenre';
 import {useNetInfo} from '@react-native-community/netinfo';
+import {NoConnection} from '../components/NoConnection';
 
 type HomeScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
@@ -26,6 +27,10 @@ const Home: FC<HomeProps> = ({navigation}) => {
   useEffect(() => {
     setHeros(Heros.filter(h => h.genre === genre));
   }, [genre]);
+
+  if (true) {
+    return <NoConnection />;
+  }
 
   if (showStartPage) {
     return <WelcomPage />;

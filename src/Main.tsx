@@ -4,6 +4,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Chat from './screens/Chat';
 import {RootStackParamList} from './types/navigation';
 import {WithNet} from './provider/WithNet';
+import {useNetInfo} from '@react-native-community/netinfo';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
