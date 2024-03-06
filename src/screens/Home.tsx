@@ -28,10 +28,6 @@ const Home: FC<HomeProps> = ({navigation}) => {
     setHeros(Heros.filter(h => h.genre === genre));
   }, [genre]);
 
-  if (true) {
-    return <NoConnection />;
-  }
-
   if (showStartPage) {
     return <WelcomPage />;
   }
