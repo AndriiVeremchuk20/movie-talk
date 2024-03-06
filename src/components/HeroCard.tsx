@@ -1,9 +1,8 @@
 import type Hero from '@/src/types/hero';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import React, {FC} from 'react';
-import {FlatList, Image, Text, TouchableOpacity, View} from 'react-native';
+import {Image, Text, TouchableOpacity, View} from 'react-native';
 import {RootStackParamList} from '../types/navigation';
-import {useNavigation} from '@react-navigation/native';
 
 type ListScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
@@ -34,18 +33,5 @@ export const HeroCard: FC<HeroCardProps> = ({hero, navigation}) => {
         </Text>
       </View>
     </TouchableOpacity>
-  );
-};
-
-type HeroListProps = {
-  heros: Hero[];
-};
-
-export const HeloList: FC<HeroListProps> = ({heros}) => {
-  return (
-    <FlatList
-      data={heros}
-      renderItem={({item}) => <HeroCard hero={item} navigation={navigation} />}
-    />
   );
 };

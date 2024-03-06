@@ -1,6 +1,6 @@
 import {FlatList, SafeAreaView, Text, View} from 'react-native';
 import Heros from '../config/heros';
-import {HeroCard} from '../components/Hero';
+import {HeroCard} from '../components/HeroCard';
 import {FC, useEffect, useState} from 'react';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RootStackParamList} from '../types/navigation';

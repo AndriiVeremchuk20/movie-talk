@@ -3,7 +3,6 @@ import Home from './screens/Home';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Chat from './screens/Chat';
 import {RootStackParamList} from './types/navigation';
-import {WithNet} from './provider/WithNet';
 import withConnection from './hooks/withConnection';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
