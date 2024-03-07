@@ -1,0 +1,12 @@
+{
+  "language": "English",
+  "screens": {
+    "intro": {
+      "title": "Home",
+	  "components": {
+		"chooseGenge": {
+			"movie": "Movie",
+			"cartoon": "Cartoon"
+		}
+	  }
+ }

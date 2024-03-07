@@ -1,3 +1,5 @@
+import Heros from '../config/heros';
+
 import {useMutation} from '@tanstack/react-query';
 import React, {FC, useState} from 'react';
 import {SafeAreaView} from 'react-native';
@@ -5,7 +7,6 @@ import {sendMessage} from '../services/open-ai';
 import {ChatBody, ChatHeader, ChatInputForm} from '../components/Chat';
 import {RootStackParamList} from '../types/navigation';
 import {RouteProp} from '@react-navigation/native';
-import Heros from '../config/heros';
 import {MessageType} from '../types/message';
 import {Alert} from 'react-native';
 
