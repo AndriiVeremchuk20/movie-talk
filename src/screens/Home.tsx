@@ -1,15 +1,15 @@
-import {Alert, FlatList, SafeAreaView, Text, View} from 'react-native';
+import {FlatList, SafeAreaView} from 'react-native';
 import Heros from '../config/heros';
 import {HeroCard} from '../components/HeroCard';
 import {FC, useEffect, useState} from 'react';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RootStackParamList} from '../types/navigation';
-import Hero from '../types/hero';
+import type Hero from '../types/hero';
 import {useAppStore} from '../store';
 import {WelcomPage} from '../components/WelcomPage';
 import {ChooseGenre} from '../components/ChooseGenre';
 import {Swipeable} from 'react-native-gesture-handler';
-import {Nav} from '../components/Nav';
+import {Settings} from '../components/Settings';
 
 type HomeScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
@@ -21,7 +21,7 @@ type HomeProps = {
 };
 
 const LeftSwipeActions = () => {
-  return <Nav />;
+  return <Settings />;
 };
 
 const Home: FC<HomeProps> = ({navigation}) => {
