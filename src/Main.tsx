@@ -4,6 +4,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Chat from './screens/Chat';
 import {RootStackParamList} from './types/navigation';
 import withConnection from './hooks/withConnection';
+import Settings from './screens/Settings';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -18,6 +19,12 @@ const Main = () => {
       <Stack.Screen
         name="Chat"
         component={Chat}
+        options={{headerShown: false}}
+      />
+
+      <Stack.Screen
+        name="Settings"
+        component={Settings}
         options={{headerShown: false}}
       />
     </Stack.Navigator>

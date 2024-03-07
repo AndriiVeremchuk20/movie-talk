@@ -2,18 +2,19 @@ import React from 'react';
 import Main from './src/Main';
 import {NavigationContainer} from '@react-navigation/native';
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
+import {GestureHandlerRootView} from 'react-native-gesture-handler';
 
 const queryProvider = new QueryClient();
 
 function App(): React.JSX.Element {
   return (
-    <React.Fragment>
-      <NavigationContainer>
-        <QueryClientProvider client={queryProvider}>
+    <GestureHandlerRootView className="flex-1">
+      <QueryClientProvider client={queryProvider}>
+        <NavigationContainer>
           <Main />
-        </QueryClientProvider>
-      </NavigationContainer>
-    </React.Fragment>
+        </NavigationContainer>
+      </QueryClientProvider>
+    </GestureHandlerRootView>
   );
 }
 

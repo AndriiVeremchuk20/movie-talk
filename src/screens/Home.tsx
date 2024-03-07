@@ -1,4 +1,4 @@
-import {FlatList, SafeAreaView, Text, View} from 'react-native';
+import {Alert, FlatList, SafeAreaView, Text, View} from 'react-native';
 import Heros from '../config/heros';
 import {HeroCard} from '../components/HeroCard';
 import {FC, useEffect, useState} from 'react';
@@ -8,8 +8,8 @@ import Hero from '../types/hero';
 import {useAppStore} from '../store';
 import {WelcomPage} from '../components/WelcomPage';
 import {ChooseGenre} from '../components/ChooseGenre';
-import {useNetInfo} from '@react-native-community/netinfo';
-import {NoConnection} from '../components/NoConnection';
+import {Swipeable} from 'react-native-gesture-handler';
+import {Nav} from '../components/Nav';
 
 type HomeScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
@@ -18,6 +18,10 @@ type HomeScreenNavigationProp = NativeStackNavigationProp<
 
 type HomeProps = {
   navigation: HomeScreenNavigationProp;
+};
+
+const LeftSwipeActions = () => {
+  return <Nav />;
 };
 
 const Home: FC<HomeProps> = ({navigation}) => {
@@ -34,14 +38,15 @@ const Home: FC<HomeProps> = ({navigation}) => {
 
   return (
     <SafeAreaView className="flex-1 bg-white/40 dark:bg-black/90">
-      <View></View>
-      <ChooseGenre />
-      <FlatList
-        data={heros}
-        renderItem={({item}) => (
-          <HeroCard hero={item} navigation={navigation} />
-        )}
-      />
+      <Swipeable renderLeftActions={LeftSwipeActions}>
+        <ChooseGenre />
+        <FlatList
+          data={heros}
+          renderItem={({item}) => (
+            <HeroCard hero={item} navigation={navigation} />
+          )}
+        />
+      </Swipeable>
     </SafeAreaView>
   );
 };
