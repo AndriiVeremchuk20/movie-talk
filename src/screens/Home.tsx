@@ -5,11 +5,9 @@ import {FC, useEffect, useState} from 'react';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RootStackParamList} from '../types/navigation';
 import type Hero from '../types/hero';
-import {useAppStore} from '../store';
+import {useAppStore, useGenreStore} from '../store';
 import {WelcomPage} from '../components/WelcomPage';
 import {ChooseGenre} from '../components/ChooseGenre';
-import {Swipeable} from 'react-native-gesture-handler';
-import {Settings} from '../components/Settings';
 
 type HomeScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
@@ -20,12 +18,9 @@ type HomeProps = {
   navigation: HomeScreenNavigationProp;
 };
 
-const LeftSwipeActions = () => {
-  return <Settings />;
-};
-
 const Home: FC<HomeProps> = ({navigation}) => {
-  const {showStartPage, genre} = useAppStore();
+  const {genre} = useGenreStore();
+  const {showStartPage} = useAppStore();
   const [heros, setHeros] = useState<Hero[]>(Heros);
 
   useEffect(() => {
@@ -38,15 +33,13 @@ const Home: FC<HomeProps> = ({navigation}) => {
 
   return (
     <SafeAreaView className="flex-1 bg-white/40 dark:bg-black/90">
-      <Swipeable renderLeftActions={LeftSwipeActions}>
-        <ChooseGenre />
-        <FlatList
-          data={heros}
-          renderItem={({item}) => (
-            <HeroCard hero={item} navigation={navigation} />
-          )}
-        />
-      </Swipeable>
+      <ChooseGenre />
+      <FlatList
+        data={heros.sort((a, b) => a.name.localeCompare(b.name))}
+        renderItem={({item}) => (
+          <HeroCard hero={item} navigation={navigation} />
+        )}
+      />
     </SafeAreaView>
   );
 };

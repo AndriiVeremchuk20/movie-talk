@@ -10,10 +10,10 @@ const Heros: Hero[] = [
   },
   {
     id: 2,
-    name: 'Indiana Jones',
-    movie: 'Indiana Jones and the Last Crusade',
-    photoUrl: 'https://ik.imagekit.io/dk6sqsizn/MovieTalk/Indiana_Jones.png',
-    genre: 'movie',
+    name: 'Mike Wazowski',
+    movie: 'Monsters, Inc.',
+    photoUrl: 'https://ik.imagekit.io/dk6sqsizn/MovieTalk/Mike_Wazowski.png',
+    genre: 'cartoon',
   },
   {
     id: 3,
@@ -25,10 +25,10 @@ const Heros: Hero[] = [
   },
   {
     id: 4,
-    name: 'James Bond',
-    movie: 'Agent 007 No time to die',
-    photoUrl: 'https://ik.imagekit.io/dk6sqsizn/MovieTalk/Daniel_Craig.png',
-    genre: 'movie',
+    name: 'Garfield',
+    movie: 'garfield',
+    photoUrl: 'https://ik.imagekit.io/dk6sqsizn/MovieTalk/Garfield.png',
+    genre: 'cartoon',
   },
   {
     id: 5,
@@ -67,10 +67,10 @@ const Heros: Hero[] = [
   },
   {
     id: 10,
-    name: 'Wonder Woman',
-    movie: 'Wonder Woman',
-    photoUrl: 'https://ik.imagekit.io/dk6sqsizn/MovieTalk/MsMarvel.png',
-    genre: 'movie',
+    name: 'Skipper',
+    movie: 'Penguins of madagascar',
+    photoUrl: 'https://ik.imagekit.io/dk6sqsizn/MovieTalk/skiper.png',
+    genre: 'cartoon',
   },
   {
     id: 11,
@@ -161,10 +161,10 @@ const Heros: Hero[] = [
   },
   {
     id: 23,
-    name: 'Mathayus',
-    movie: 'The King of scorpions',
-    photoUrl: 'https://ik.imagekit.io/dk6sqsizn/MovieTalk/Matayas.png',
-    genre: 'movie',
+    name: 'Wall-e',
+    movie: 'Wall-e',
+    photoUrl: 'https://ik.imagekit.io/dk6sqsizn/MovieTalk/wall-e.jpeg',
+    genre: 'cartoon',
   },
   {
     id: 24,

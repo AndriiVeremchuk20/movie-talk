@@ -1,1 +1,2 @@
-export * from './app';
+export * from './genre';
+export * from './config';
