@@ -3,7 +3,7 @@ import {create} from 'zustand';
 import {createJSONStorage, persist} from 'zustand/middleware';
 import {Genre} from '../types/genre';
 
-interface AppState {
+interface GenreState {
   showStartPage: boolean;
   setShowStartPage: (show: boolean) => void;
 
@@ -11,8 +11,8 @@ interface AppState {
   setGenre: (genre: Genre) => void;
 }
 
-export const useAppStore = create(
-  persist<AppState>(
+export const useGenreStore = create(
+  persist<GenreState>(
     set => ({
       showStartPage: true,
       setShowStartPage: (show: boolean) => set({showStartPage: show}),
@@ -21,7 +21,7 @@ export const useAppStore = create(
       setGenre: (genre: Genre) => set({genre}),
     }),
     {
-      name: 'app-store',
+      name: 'genre',
       storage: createJSONStorage(() => AsyncStorage),
     },
   ),

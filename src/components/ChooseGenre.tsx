@@ -1,10 +1,10 @@
 import {Text, View} from 'react-native';
 import {JokerIcon, MinionIcon} from '../svgs';
-import {useAppStore} from '../store';
+import {useGenreStore} from '../store';
 import {Button} from '../common';
 
 export const ChooseGenre = () => {
-  const {genre, setGenre} = useAppStore();
+  const {genre, setGenre} = useGenreStore();
 
   return (
     <View className="flex flex-row items-center bg-orange-300 dark:bg-red-700">
