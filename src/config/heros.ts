@@ -5,7 +5,7 @@ const Heros: Hero[] = [
     id: 1,
     name: 'Mickey Mouse',
     movie: 'Fantasia',
-    photoUrl: 'https://ik.imagekit.io/dk6sqsizn/MovieTalk/Mickey_Mouse.png',
+    photoUrl: 'https://ik.imagekit.io/dk6sqsizn/MovieTalk/mickey-mouse.png',
     genre: 'cartoon',
   },
   {
@@ -17,7 +17,7 @@ const Heros: Hero[] = [
   },
   {
     id: 3,
-    name: 'SpongeBob SquarePants',
+    name: 'SpongeBob',
     movie: 'The SpongeBob SquarePants Movie',
     photoUrl:
       'https://ik.imagekit.io/dk6sqsizn/MovieTalk/SpongeBob_SquarePants.png',
@@ -32,9 +32,10 @@ const Heros: Hero[] = [
   },
   {
     id: 5,
-    name: 'Bugs Bunny',
-    movie: 'Space Jam',
-    photoUrl: 'https://ik.imagekit.io/dk6sqsizn/MovieTalk/Bugs_Bunny.png',
+    name: 'Aang',
+    movie: 'Avatar last airbender',
+    photoUrl:
+      'https://ik.imagekit.io/dk6sqsizn/MovieTalk/aang.png?updatedAt=1710252560439',
     genre: 'cartoon',
   },
   {
@@ -163,7 +164,7 @@ const Heros: Hero[] = [
     id: 23,
     name: 'Wall-e',
     movie: 'Wall-e',
-    photoUrl: 'https://ik.imagekit.io/dk6sqsizn/MovieTalk/wall-e.jpeg',
+    photoUrl: 'https://ik.imagekit.io/dk6sqsizn/MovieTalk/wall-e.png',
     genre: 'cartoon',
   },
   {
@@ -175,9 +176,9 @@ const Heros: Hero[] = [
   },
   {
     id: 27,
-    name: 'Peter Griffin',
-    movie: "Family Guy: The Freakin' Sweet Collection",
-    photoUrl: 'https://ik.imagekit.io/dk6sqsizn/MovieTalk/FamilyGuy_Peter.png',
+    name: 'Finn',
+    movie: 'The time adventures',
+    photoUrl: 'https://ik.imagekit.io/dk6sqsizn/MovieTalk/finn.png',
     genre: 'cartoon',
   },
   {
@@ -189,9 +190,9 @@ const Heros: Hero[] = [
   },
   {
     id: 31,
-    name: 'Stewie Griffin',
-    movie: "Family Guy: The Freakin' Sweet Collection",
-    photoUrl: 'https://ik.imagekit.io/dk6sqsizn/MovieTalk/Stewie_Griffin.png',
+    name: 'Rapunzel',
+    movie: 'Rapunzel: The confused history',
+    photoUrl: 'https://ik.imagekit.io/dk6sqsizn/MovieTalk/rapunzel.png',
     genre: 'cartoon',
   },
 
@@ -221,9 +222,9 @@ const Heros: Hero[] = [
 
   {
     id: 38,
-    name: 'Art',
-    movie: 'Art clown',
-    photoUrl: 'https://ik.imagekit.io/dk6sqsizn/MovieTalk/Art_the_Clown.png',
+    name: 'Wednesday Adams',
+    movie: 'serial Wednestday',
+    photoUrl: 'https://ik.imagekit.io/dk6sqsizn/MovieTalk/wednesday.png',
     genre: 'movie',
   },
   {
@@ -257,10 +258,9 @@ const Heros: Hero[] = [
   },
   {
     id: 50,
-    name: 'Twilight Sparkle',
-    movie: 'My Little Pony: The Movie',
-    photoUrl:
-      'https://ik.imagekit.io/dk6sqsizn/MovieTalk/Princess_Twilight_Sparkle.png',
+    name: 'Merida',
+    movie: 'Brave heart cartoon',
+    photoUrl: 'https://ik.imagekit.io/dk6sqsizn/MovieTalk/Merida.png',
     genre: 'cartoon',
   },
   {
@@ -279,9 +279,9 @@ const Heros: Hero[] = [
   },
   {
     id: 60,
-    name: 'Oogway',
-    movie: 'Panda kung fu',
-    photoUrl: 'https://ik.imagekit.io/dk6sqsizn/MovieTalk/Oogway.png',
+    name: 'Rango',
+    movie: 'Rango',
+    photoUrl: 'https://ik.imagekit.io/dk6sqsizn/MovieTalk/rango.png',
     genre: 'cartoon',
   },
   {
@@ -361,6 +361,13 @@ const Heros: Hero[] = [
     name: 'Willi Wonka',
     movie: 'charlie and the chocolate factory',
     photoUrl: 'https://ik.imagekit.io/dk6sqsizn/MovieTalk/Willy_Wonka.png',
+    genre: 'movie',
+  },
+  {
+    id: 73,
+    name: 'Patrick Bateman',
+    movie: 'American psycho',
+    photoUrl: 'https://ik.imagekit.io/dk6sqsizn/MovieTalk/American_psyho.png',
     genre: 'movie',
   },
 ];
