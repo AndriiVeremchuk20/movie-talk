@@ -1,6 +1,6 @@
 {
   "name": "Learn",
-  "displayName": "Learn",
+  "displayName": "Movie Talk",
   "expo": {
     "experiments": {"tsconfigPaths": true}
   }
