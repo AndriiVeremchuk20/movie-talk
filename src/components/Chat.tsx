@@ -12,11 +12,9 @@ import {BackIcon, SendIcon} from '../svgs';
 import {Controller, SubmitHandler, useForm} from 'react-hook-form';
 import {z} from 'zod';
 import {zodResolver} from '@hookform/resolvers/zod';
-import {SafeAreaView} from 'react-native';
 import {FlatList} from 'react-native';
 import {MessageType} from '../types/message';
 import {useNavigation} from '@react-navigation/native';
-import {ScrollView} from 'react-native';
 
 type ChatHeaerPorps = {
   name: string;
@@ -44,7 +42,7 @@ export const ChatHeader: FC<ChatHeaerPorps> = ({name, avatar, isTyping}) => {
         <View className="rounded-full border-2 border-green-500 bg-white p-[1px]">
           <Image
             source={{uri: avatar}}
-            className="h-[50px] w-[50px] rounded-b-full"
+            className="h-[55px] w-[55px] rounded-b-full"
           />
         </View>
       </View>
