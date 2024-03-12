@@ -1,7 +1,7 @@
 import {FlatList, SafeAreaView} from 'react-native';
 import Heros from '../config/heros';
 import {HeroCard} from '../components/HeroCard';
-import {FC, useEffect, useState} from 'react';
+import {FC, useEffect, useRef, useState} from 'react';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RootStackParamList} from '../types/navigation';
 import type Hero from '../types/hero';
@@ -22,9 +22,11 @@ const Home: FC<HomeProps> = ({navigation}) => {
   const {genre} = useGenreStore();
   const {showStartPage} = useAppStore();
   const [heros, setHeros] = useState<Hero[]>(Heros);
+  const herosListRef = useRef<FlatList | null>(null);
 
   useEffect(() => {
     setHeros(Heros.filter(h => h.genre === genre));
+    herosListRef.current?.scrollToOffset({animated: true, offset: 0});
   }, [genre]);
 
   if (showStartPage) {
@@ -35,6 +37,7 @@ const Home: FC<HomeProps> = ({navigation}) => {
     <SafeAreaView className="flex-1 bg-white/40 dark:bg-black/90">
       <ChooseGenre />
       <FlatList
+        ref={herosListRef}
         data={heros.sort((a, b) => a.name.localeCompare(b.name))}
         renderItem={({item}) => (
           <HeroCard hero={item} navigation={navigation} />
