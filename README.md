@@ -8,9 +8,9 @@
 ## Description
 Movie Talk is a simple Android app that allows you to chat with movie and cartoon heroes, powered by the [OpenAI API](https://platform.openai.com/).
 
-
 ## Example
-<video src="./video.mp4" controls style="max-width: 250px;"></video>
+<img src="./movie-talk.gif">
+
 
 # Getting Started 
 1. Setup the `.env` file based on `.env.example`.
