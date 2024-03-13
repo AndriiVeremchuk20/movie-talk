@@ -1,4 +1,4 @@
-package com.learn
+package com.movieTalk
 
 import android.app.Application
 import com.facebook.react.PackageList

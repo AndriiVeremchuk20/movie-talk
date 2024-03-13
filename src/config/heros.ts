@@ -322,8 +322,8 @@ const Heros: Hero[] = [
   },
   {
     id: 67,
-    name: 'Forest Gump',
-    movie: 'The Forest Gump',
+    name: 'Forrest Gump',
+    movie: 'The Forrest Gump',
     photoUrl: 'https://ik.imagekit.io/dk6sqsizn/MovieTalk/Forest_Gamp.png',
     genre: 'movie',
   },
