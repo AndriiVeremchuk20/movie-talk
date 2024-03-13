@@ -55,10 +55,10 @@ type ChatBodyProps = {
 };
 
 export const ChatBody: FC<ChatBodyProps> = ({messages}) => {
-  const MassagesRef = useRef<FlatList | null>(null);
+  const messagesRef = useRef<FlatList | null>(null);
 
   useEffect(() => {
-    MassagesRef.current?.scrollToEnd();
+    messagesRef.current?.scrollToEnd({animated: true});
   }, [messages]);
 
   return (
@@ -69,8 +69,9 @@ export const ChatBody: FC<ChatBodyProps> = ({messages}) => {
         </View>
       ) : (
         <FlatList
-          ref={MassagesRef}
+          ref={messagesRef}
           data={messages}
+          onLayout={() => messagesRef.current?.scrollToEnd({animated: true})}
           renderItem={({item}) => <ChatMessage message={item} />}
           className="m-2 mb-5"
         />
