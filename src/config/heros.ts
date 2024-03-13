@@ -169,7 +169,7 @@ const Heros: Hero[] = [
   },
   {
     id: 24,
-    name: 'Ramil',
+    name: 'Remy',
     movie: 'Ratatuy',
     photoUrl: 'https://ik.imagekit.io/dk6sqsizn/MovieTalk/Remy.png',
     genre: 'cartoon',
@@ -222,7 +222,7 @@ const Heros: Hero[] = [
 
   {
     id: 38,
-    name: 'Wednesday Adams',
+    name: 'Wednesday Addams',
     movie: 'serial Wednestday',
     photoUrl: 'https://ik.imagekit.io/dk6sqsizn/MovieTalk/wednesday.png',
     genre: 'movie',
@@ -308,7 +308,7 @@ const Heros: Hero[] = [
   },
   {
     id: 65,
-    name: 'Lebowski',
+    name: 'Big Lebowski',
     movie: 'The Big Lebowski',
     photoUrl: 'https://ik.imagekit.io/dk6sqsizn/MovieTalk/Lebovki.png',
     genre: 'movie',
@@ -358,7 +358,7 @@ const Heros: Hero[] = [
   },
   {
     id: 72,
-    name: 'Willi Wonka',
+    name: 'Willy Wonka',
     movie: 'charlie and the chocolate factory',
     photoUrl: 'https://ik.imagekit.io/dk6sqsizn/MovieTalk/Willy_Wonka.png',
     genre: 'movie',
