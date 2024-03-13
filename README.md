@@ -5,6 +5,9 @@
 <br>
 <br>
 
+## Link to app
+[Amazon Appstore](https://www.amazon.com/gp/product/B0CXJN9MPC)
+
 ## Description
 Movie Talk is a simple Android app that allows you to chat with movie and cartoon heroes, powered by the [OpenAI API](https://platform.openai.com/).
 
